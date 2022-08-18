@@ -168,3 +168,12 @@ COPY --from=build-src /src/bottlerocket/agents/src/bin/migration-test-agent/ssm-
 COPY --from=build-src /usr/share/licenses/testsys /licenses/testsys
 
 ENTRYPOINT ["./migration-test-agent"]
+
+# =^..^= =^..^= =^..^= =^..^= =^..^= =^..^= =^..^= =^..^= =^..^= =^..^= =^..^= =^..^= =^..^=
+FROM public.ecr.aws/amazonlinux/amazonlinux:2 as os-test-agent
+# Copy binary
+COPY --from=build-src /src/bottlerocket/agents/bin/os-test-agent ./
+# Copy licenses
+COPY --from=build-src /usr/share/licenses/testsys /licenses/testsys
+
+ENTRYPOINT ["./os-test-agent"]

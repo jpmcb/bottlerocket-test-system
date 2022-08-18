@@ -1,0 +1,17 @@
+---
+apiVersion: testsys.bottlerocket.aws/v1
+kind: Test
+metadata:
+  name: hello-os-test
+  namespace: testsys-bottlerocket-aws
+spec:
+  agent:
+    name: os-test-agent
+    image: "os-test-agent:os-demo"
+    keepRunning: false
+    configuration:
+      awsRegion: us-west-2
+      instanceIds: [i-xxxxxxxxxxxxxx]
+      ssmDocName: hello-world-command
+  resources: []
+  dependsOn: []

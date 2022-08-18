@@ -87,6 +87,19 @@ pub struct MigrationConfig {
 
 impl Configuration for MigrationConfig {}
 
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct OsConfig {
+    pub aws_region: String,
+    pub instance_ids: HashSet<String>,
+    pub assume_role: Option<String>,
+
+    // The name of the ssm doc to run against the instance IDs
+    pub ssm_doc_name: String,
+}
+
+impl Configuration for OsConfig {}
+
 /// The configuration information for a eks instance provider.
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize, Default)]
 #[serde(rename_all = "camelCase")]

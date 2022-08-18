@@ -1,0 +1,15 @@
+---
+schemaVersion: "2.2"
+description: "Example hello world ssm doc using asw:runShellScript"
+parameters:
+  commands:
+    type: "String"
+    description: "Say hello to TestSys!"
+    default: "echo Hello World"
+mainSteps:
+- action: "aws:runShellScript"
+  name: "runCommands"
+  inputs:
+    timeoutSeconds: "60"
+    runCommand:
+    - "{{ commands }}"
